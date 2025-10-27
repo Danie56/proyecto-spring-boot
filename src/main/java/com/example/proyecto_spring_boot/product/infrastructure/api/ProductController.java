@@ -1,4 +1,4 @@
-package com.example.proyecto_spring_boot.product.infrastructure;
+package com.example.proyecto_spring_boot.product.infrastructure.api;
 
 import com.example.proyecto_spring_boot.product.domain.Product;
 import org.springframework.http.ResponseEntity;
