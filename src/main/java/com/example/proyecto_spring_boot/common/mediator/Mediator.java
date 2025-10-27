@@ -1,0 +1,18 @@
+package com.example.proyecto_spring_boot.common.mediator;
+
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+@Component
+public class Mediator {
+
+    Map<Class<?>, HandlerManage<?, ?>> handlerManageMap;
+
+    public Mediator(List<HandlerManage<?, ?>> handlers) {
+        handlerManageMap = handlers.stream().collect(Collectors.toMap(HandlerManage::getRequestType, Function.identity()));
+    }
+}
