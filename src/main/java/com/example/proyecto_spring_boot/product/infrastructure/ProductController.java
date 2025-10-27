@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/products")
-public class ProductController {
+public class ProductController implements ProductApi {
 
     public ArrayList<Product> products;
 
