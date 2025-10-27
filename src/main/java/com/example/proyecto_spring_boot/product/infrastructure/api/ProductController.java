@@ -25,33 +25,13 @@ public class ProductController implements ProductApi {
 
         return ResponseEntity.ok(products);
 
-<<<<<<< HEAD
-        this.products = new ArrayList<>();
-        products.add(Product.builder().id(1L).name("Product 1").description("Description 1").price(111.0).image("imagen 1").build());
-        products.add(Product.builder().id(2L).name("Product 2").description("Description 2").price(111.0).image("imagen 2").build());
-    }
-
-    @GetMapping("")
-    public ResponseEntity<List<Product>> getAllProducts() {
-
-        return ResponseEntity.ok(products);
 
     }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
-        Optional<Product> productOptional = products.stream().filter(product -> product.getId().equals(id)).findFirst();
-        return productOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-
-
-    }
-
+    
     @PostMapping("")
     public ResponseEntity<Void> createProduct(@RequestBody Product product) {
         products.add(product);
         return ResponseEntity.ok().build();
-=======
->>>>>>> 3706fd1c0a0d723d1df12040a0711823bb078d8b
     }
 
     @GetMapping("/{id}")
@@ -60,12 +40,6 @@ public class ProductController implements ProductApi {
         return productOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
 
 
-    }
-
-    @PostMapping("")
-    public ResponseEntity<Void> createProduct(@RequestBody Product product) {
-        products.add(product);
-        return ResponseEntity.ok().build();
     }
 
     @PutMapping("")
@@ -78,7 +52,6 @@ public class ProductController implements ProductApi {
         return ResponseEntity.ok(product);
     }
 
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         products.removeIf(product -> product.getId().equals(id));
@@ -87,18 +60,4 @@ public class ProductController implements ProductApi {
 
     }
 
-
-<<<<<<< HEAD
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
-        products.removeIf(product -> product.getId().equals(id));
-        return ResponseEntity.noContent().build();
-
-
-    }
-
-
-=======
->>>>>>> 3706fd1c0a0d723d1df12040a0711823bb078d8b
 }
