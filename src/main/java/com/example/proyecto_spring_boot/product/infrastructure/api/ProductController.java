@@ -1,6 +1,9 @@
 package com.example.proyecto_spring_boot.product.infrastructure.api;
 
+import com.example.proyecto_spring_boot.common.mediator.Mediator;
+import com.example.proyecto_spring_boot.product.aplication.ProductCreateRequest;
 import com.example.proyecto_spring_boot.product.domain.Product;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,15 +13,12 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/products")
+@RequiredArgsConstructor
 public class ProductController implements ProductApi {
 
-    public ArrayList<Product> products;
+    public final ArrayList<Product> products;
+    private final Mediator mediator;
 
-    public ProductController() {
-        this.products = new ArrayList<>();
-        products.add(Product.builder().id(1L).name("Product 1").description("Description 1").price(111.0).image("imagen 1").build());
-        products.add(Product.builder().id(2L).name("Product 2").description("Description 2").price(111.0).image("imagen 2").build());
-    }
 
     @GetMapping("")
     public ResponseEntity<List<Product>> getAllProducts() {
@@ -27,10 +27,11 @@ public class ProductController implements ProductApi {
 
 
     }
-    
+
     @PostMapping("")
     public ResponseEntity<Void> createProduct(@RequestBody Product product) {
-        products.add(product);
+        ProductCreateRequest productCreateRequest = new ProductCreateRequest(product.getId(), product.getName(), product.getDescription(), product.getPrice(), product.getImage());
+        mediator.dispatch(productCreateRequest);
         return ResponseEntity.ok().build();
     }
 
