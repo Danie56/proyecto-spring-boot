@@ -15,4 +15,14 @@ public class Mediator {
     public Mediator(List<HandlerManage<?, ?>> handlers) {
         handlerManageMap = handlers.stream().collect(Collectors.toMap(HandlerManage::getRequestType, Function.identity()));
     }
+
+    public <R, T extends Request<R>> R dispatch(T request) {
+
+
+        HandlerManage<T, R> handler = (HandlerManage<T, R>) handlerManageMap.get(request.getClass());
+        if (handler == null) {
+            throw new RuntimeException("Handler not found");
+        }
+        return handler.handle(request);
+    }
 }
