@@ -1,0 +1,15 @@
+package com.example.proyecto_spring_boot.product.aplication;
+
+import com.example.proyecto_spring_boot.common.mediator.Request;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
+public class ProductCreateRequest implements Request<Void> {
+    private Long id;
+    private String name;
+    private String description;
+    private Double price;
+    private String image;
+}
