@@ -1,7 +1,6 @@
 package com.example.proyecto_spring_boot.product.infrastructure.api;
 
-import com.example.proyecto_spring_boot.product.domain.Product;
-import com.example.proyecto_spring_boot.product.infrastructure.api.dto.ProductCreateDto;
+import com.example.proyecto_spring_boot.product.infrastructure.api.dto.ProductDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,13 +9,13 @@ import java.util.List;
 
 public interface ProductApi {
 
-    ResponseEntity<List<Product>> getAllProducts();
+    ResponseEntity<List<ProductDto>> getAllProducts();
 
-    ResponseEntity<Product> getProductById(@PathVariable Long id);
+    ResponseEntity<ProductDto> getProductById(@PathVariable Long id);
 
-    ResponseEntity<Void> createProduct(@RequestBody ProductCreateDto productCreateDto);
+    ResponseEntity<Void> createProduct(@RequestBody ProductDto productDto);
 
-    ResponseEntity<Product> updateProduct(@RequestBody Product product);
+    ResponseEntity<ProductDto> updateProduct(@RequestBody ProductDto product);
 
     ResponseEntity<Void> deleteProduct(@PathVariable Long id);
 }

@@ -8,12 +8,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor
-public class ProductCreateHandler implements HandlerManage<ProductCreateRequest, Void> {
+public class CreateProductHandler implements HandlerManage<CreatePorductRequest, Void> {
     private final ProductRepository productRepository;
 
 
     @Override
-    public Void handle(ProductCreateRequest request) {
+    public Void handle(CreatePorductRequest request) {
         Product product = Product.builder()
                 .id(request.getId())
                 .name(request.getName())
@@ -26,7 +26,7 @@ public class ProductCreateHandler implements HandlerManage<ProductCreateRequest,
     }
 
     @Override
-    public Class<ProductCreateRequest> getRequestType() {
-        return ProductCreateRequest.class;
+    public Class<CreatePorductRequest> getRequestType() {
+        return CreatePorductRequest.class;
     }
 }
