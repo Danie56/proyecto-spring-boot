@@ -9,4 +9,6 @@ import org.mapstruct.ReportingPolicy;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING, unmappedTargetPolicy = ReportingPolicy.ERROR)
 public interface ProductEntityMapper {
     ProductEntity mapToProductEntity(Product product);
+
+    Product mapToProduct(ProductEntity productEntity);
 }
