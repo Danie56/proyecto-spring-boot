@@ -1,4 +1,4 @@
-package com.example.proyecto_spring_boot.product.aplication;
+package com.example.proyecto_spring_boot.product.aplication.create;
 
 import com.example.proyecto_spring_boot.common.mediator.HandlerManage;
 import com.example.proyecto_spring_boot.product.domain.Product;
