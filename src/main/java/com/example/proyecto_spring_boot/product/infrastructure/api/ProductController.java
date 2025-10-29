@@ -4,7 +4,7 @@ import com.example.proyecto_spring_boot.common.mediator.Mediator;
 import com.example.proyecto_spring_boot.product.aplication.create.ProductCreateRequest;
 import com.example.proyecto_spring_boot.product.domain.Product;
 import com.example.proyecto_spring_boot.product.infrastructure.api.dto.ProductCreateDto;
-import com.example.proyecto_spring_boot.product.infrastructure.api.mapper.ProductMapper;
+import com.example.proyecto_spring_boot.product.infrastructure.api.mapper.ProductDtoMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +18,7 @@ public class ProductController implements ProductApi {
 
     private final Mediator mediator;
 
-    private final ProductMapper productMapper;
+    private final ProductDtoMapper productDtoMapper;
 
 
     @GetMapping("")
@@ -31,7 +31,7 @@ public class ProductController implements ProductApi {
 
     @PostMapping("")
     public ResponseEntity<Void> createProduct(@RequestBody ProductCreateDto productCreateDto) {
-        ProductCreateRequest productCreateRequest = productMapper.mapToProductCreateRequest(productCreateDto);
+        ProductCreateRequest productCreateRequest = productDtoMapper.mapToProductCreateRequest(productCreateDto);
         mediator.dispatch(productCreateRequest);
         return ResponseEntity.ok().build();
     }
