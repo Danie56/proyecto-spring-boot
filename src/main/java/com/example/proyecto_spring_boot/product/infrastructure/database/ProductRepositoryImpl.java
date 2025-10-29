@@ -18,12 +18,12 @@ public class ProductRepositoryImpl implements ProductRepository {
     private final ProductEntityMapper productEntityMapper;
 
     @Override
-    public void upsert(Product product) {
+    public Product upsert(Product product) {
         ProductEntity productEntity = productEntityMapper.mapToProductEntity(product);
-
+        products.removeIf(p -> p.getId().equals(product.getId()));
 
         products.add(productEntity);
-
+        return productEntityMapper.mapToProduct(productEntity);
 
     }
 
@@ -41,4 +41,6 @@ public class ProductRepositoryImpl implements ProductRepository {
     public void delete(Long id) {
         products.removeIf(p -> p.getId().equals(id));
     }
+
+
 }

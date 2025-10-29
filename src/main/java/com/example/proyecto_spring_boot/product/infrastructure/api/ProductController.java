@@ -3,9 +3,12 @@ package com.example.proyecto_spring_boot.product.infrastructure.api;
 import com.example.proyecto_spring_boot.common.mediator.Mediator;
 import com.example.proyecto_spring_boot.product.aplication.create.CreatePorductRequest;
 import com.example.proyecto_spring_boot.product.aplication.delete.DeleteProductRequest;
+import com.example.proyecto_spring_boot.product.aplication.get.getAll.GetAllProductRequest;
+import com.example.proyecto_spring_boot.product.aplication.get.getAll.GetAllProductResponse;
 import com.example.proyecto_spring_boot.product.aplication.get.getById.GetProductByIdRequest;
 import com.example.proyecto_spring_boot.product.aplication.get.getById.GetProductByIdResponse;
-import com.example.proyecto_spring_boot.product.domain.Product;
+import com.example.proyecto_spring_boot.product.aplication.update.UpdateProductRequest;
+import com.example.proyecto_spring_boot.product.aplication.update.UpdateProductResponse;
 import com.example.proyecto_spring_boot.product.infrastructure.api.dto.ProductDto;
 import com.example.proyecto_spring_boot.product.infrastructure.api.mapper.ProductDtoMapper;
 import lombok.RequiredArgsConstructor;
@@ -25,9 +28,11 @@ public class ProductController implements ProductApi {
 
 
     @GetMapping("")
-    public ResponseEntity<List<Product>> getAllProducts() {
+    public ResponseEntity<List<ProductDto>> getAllProducts() {
+        GetAllProductResponse response = mediator.dispatch(new GetAllProductRequest());
+        List<ProductDto> products = response.getProducts().stream().map(productDtoMapper::mapToProductDto).toList();
 
-        return null;
+        return ResponseEntity.ok(products);
 
 
     }
@@ -51,9 +56,11 @@ public class ProductController implements ProductApi {
     }
 
     @PutMapping("")
-    public ResponseEntity<Product> updateProduct(@RequestBody Product product) {
+    public ResponseEntity<ProductDto> updateProduct(@RequestBody ProductDto productDto) {
+        UpdateProductRequest request = productDtoMapper.mapToProductUpdateRequest(productDto);
+        UpdateProductResponse response = mediator.dispatch(request);
 
-        return null;
+        return ResponseEntity.ok(productDtoMapper.mapToProductDto(response.getProduct()));
     }
 
     @DeleteMapping("/{id}")
