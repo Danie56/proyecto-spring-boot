@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -29,5 +30,15 @@ public class ProductRepositoryImpl implements ProductRepository {
     @Override
     public Optional<Product> getById(Long id) {
         return products.stream().filter(p -> p.getId().equals(id)).findFirst().map(productEntityMapper::mapToProduct);
+    }
+
+    @Override
+    public List<Product> getAll() {
+        return products.stream().map(productEntityMapper::mapToProduct).toList();
+    }
+
+    @Override
+    public void delete(Long id) {
+        products.removeIf(p -> p.getId().equals(id));
     }
 }

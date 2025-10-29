@@ -2,8 +2,9 @@ package com.example.proyecto_spring_boot.product.infrastructure.api;
 
 import com.example.proyecto_spring_boot.common.mediator.Mediator;
 import com.example.proyecto_spring_boot.product.aplication.create.CreatePorductRequest;
-import com.example.proyecto_spring_boot.product.aplication.get.GetProductByIdRequest;
-import com.example.proyecto_spring_boot.product.aplication.get.GetProductByIdResponse;
+import com.example.proyecto_spring_boot.product.aplication.delete.DeleteProductRequest;
+import com.example.proyecto_spring_boot.product.aplication.get.getById.GetProductByIdRequest;
+import com.example.proyecto_spring_boot.product.aplication.get.getById.GetProductByIdResponse;
 import com.example.proyecto_spring_boot.product.domain.Product;
 import com.example.proyecto_spring_boot.product.infrastructure.api.dto.ProductDto;
 import com.example.proyecto_spring_boot.product.infrastructure.api.mapper.ProductDtoMapper;
@@ -57,7 +58,8 @@ public class ProductController implements ProductApi {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
-        return null;
+        mediator.dispatch(new DeleteProductRequest(id));
+        return ResponseEntity.noContent().build();
 
 
     }

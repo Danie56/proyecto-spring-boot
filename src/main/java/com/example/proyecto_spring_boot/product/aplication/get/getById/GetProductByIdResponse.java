@@ -1,4 +1,4 @@
-package com.example.proyecto_spring_boot.product.aplication.get;
+package com.example.proyecto_spring_boot.product.aplication.get.getById;
 
 import com.example.proyecto_spring_boot.product.domain.Product;
 import lombok.AllArgsConstructor;
