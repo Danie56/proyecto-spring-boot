@@ -1,6 +1,6 @@
 package com.example.proyecto_spring_boot.product.infrastructure.database.mapper;
 
-import com.example.proyecto_spring_boot.product.domain.Product;
+import com.example.proyecto_spring_boot.product.domain.entity.Product;
 import com.example.proyecto_spring_boot.product.infrastructure.database.entity.ProductEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;

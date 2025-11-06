@@ -1,8 +1,9 @@
 package com.example.proyecto_spring_boot.product.aplication.delete;
 
 import com.example.proyecto_spring_boot.common.mediator.HandlerManage;
-import com.example.proyecto_spring_boot.product.domain.Product;
-import com.example.proyecto_spring_boot.product.domain.ProductRepository;
+import com.example.proyecto_spring_boot.product.domain.entity.Product;
+import com.example.proyecto_spring_boot.product.domain.execptions.ProductNotFoundException;
+import com.example.proyecto_spring_boot.product.domain.port.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +14,7 @@ public class DeleteProductHandler implements HandlerManage<DeleteProductRequest,
 
     @Override
     public Void handle(DeleteProductRequest request) {
-        Product product = productRepository.getById(request.getId()).orElseThrow(() -> new RuntimeException("product not found"));
+        Product product = productRepository.getById(request.getId()).orElseThrow(() -> new ProductNotFoundException(request.getId()));
         productRepository.delete(request.getId());
         return null;
 
