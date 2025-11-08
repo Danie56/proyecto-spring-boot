@@ -13,8 +13,14 @@ public class UpdateProductHandler implements HandlerManage<UpdateProductRequest,
 
     @Override
     public UpdateProductResponse handle(UpdateProductRequest request) {
+        Long id = 0L;
+
+        if (productRepository.getAll().size() < request.getId()) {
+
+            id = (long) productRepository.getAll().size();
+        }
         Product product = productRepository.upsert(Product.builder()
-                .id(request.getId())
+                .id(id + 1)
                 .name(request.getName())
                 .description(request.getDescription())
                 .price(request.getPrice())
