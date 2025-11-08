@@ -1,4 +1,4 @@
-package com.example.proyecto_spring_boot.product.domain;
+package com.example.proyecto_spring_boot.product.domain.entity;
 
 import lombok.Builder;
 import lombok.Data;

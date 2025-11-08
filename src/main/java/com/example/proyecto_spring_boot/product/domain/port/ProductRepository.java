@@ -1,4 +1,6 @@
-package com.example.proyecto_spring_boot.product.domain;
+package com.example.proyecto_spring_boot.product.domain.port;
+
+import com.example.proyecto_spring_boot.product.domain.entity.Product;
 
 import java.util.List;
 import java.util.Optional;

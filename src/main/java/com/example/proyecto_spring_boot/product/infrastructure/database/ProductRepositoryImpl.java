@@ -1,7 +1,7 @@
 package com.example.proyecto_spring_boot.product.infrastructure.database;
 
-import com.example.proyecto_spring_boot.product.domain.Product;
-import com.example.proyecto_spring_boot.product.domain.ProductRepository;
+import com.example.proyecto_spring_boot.product.domain.entity.Product;
+import com.example.proyecto_spring_boot.product.domain.port.ProductRepository;
 import com.example.proyecto_spring_boot.product.infrastructure.database.entity.ProductEntity;
 import com.example.proyecto_spring_boot.product.infrastructure.database.mapper.ProductEntityMapper;
 import lombok.RequiredArgsConstructor;

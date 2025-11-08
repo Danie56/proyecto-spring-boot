@@ -1,8 +1,8 @@
 package com.example.proyecto_spring_boot.product.aplication.get.getAll;
 
 import com.example.proyecto_spring_boot.common.mediator.HandlerManage;
-import com.example.proyecto_spring_boot.product.domain.Product;
-import com.example.proyecto_spring_boot.product.domain.ProductRepository;
+import com.example.proyecto_spring_boot.product.domain.entity.Product;
+import com.example.proyecto_spring_boot.product.domain.port.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
