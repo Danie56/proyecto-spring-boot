@@ -1,14 +1,12 @@
 package com.example.proyecto_spring_boot.product.aplication.update;
 
 import com.example.proyecto_spring_boot.common.mediator.Request;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
 @Builder
 public class UpdateProductRequest implements Request<UpdateProductResponse> {
     private Long id;
