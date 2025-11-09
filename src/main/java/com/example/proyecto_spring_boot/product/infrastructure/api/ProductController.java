@@ -15,6 +15,7 @@ import com.example.proyecto_spring_boot.product.infrastructure.api.dto.UpdatePro
 import com.example.proyecto_spring_boot.product.infrastructure.api.mapper.ProductDtoMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,7 +45,7 @@ public class ProductController implements ProductApi {
     public ResponseEntity<Void> createProduct(@RequestBody @Valid CreateProductDto productDto) {
         CreatePorductRequest createProductRequest = productDtoMapper.mapToProductCreateRequest(productDto);
         mediator.dispatch(createProductRequest);
-        return ResponseEntity.ok().build();
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
@@ -59,7 +60,7 @@ public class ProductController implements ProductApi {
     }
 
     @PutMapping("")
-    public ResponseEntity<ProductDto> updateProduct(@RequestBody UpdateProductDto productDto) {
+    public ResponseEntity<ProductDto> updateProduct(@RequestBody @Valid UpdateProductDto productDto) {
         UpdateProductRequest request = productDtoMapper.mapToProductUpdateRequest(productDto);
         UpdateProductResponse response = mediator.dispatch(request);
 

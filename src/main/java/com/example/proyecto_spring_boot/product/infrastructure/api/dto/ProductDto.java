@@ -1,8 +1,10 @@
 package com.example.proyecto_spring_boot.product.infrastructure.api.dto;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class ProductDto {
     private Long id;
     private String name;
