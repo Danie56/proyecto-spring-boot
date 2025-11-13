@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreatePorductRequest implements Request<Void> {
+public class CreatePorductRequest implements Request<CreateProductResponse> {
     private String name;
     private String description;
     private Double price;

@@ -15,7 +15,7 @@ public interface ProductApi {
 
     ResponseEntity<ProductDto> getProductById(@PathVariable Long id);
 
-    ResponseEntity<Void> createProduct(@RequestBody CreateProductDto productDto);
+    ResponseEntity<ProductDto> createProduct(@RequestBody CreateProductDto productDto);
 
     ResponseEntity<ProductDto> updateProduct(@RequestBody UpdateProductDto product);
 

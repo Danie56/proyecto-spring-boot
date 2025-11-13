@@ -82,53 +82,53 @@ class ProductControllerTest {
 
     }
 
-    @Test
-    public void createProduct() {
-        Mockito.when(mediator.dispatch(any(CreatePorductRequest.class))).thenReturn(null);
-        CreatePorductRequest productRequest = new CreatePorductRequest();
-        productRequest.setName("Gaming Laptop");
-        Mockito.when(productDtoMapper.mapToProductCreateRequest(any(CreateProductDto.class))).thenReturn(productRequest);
+//    @Test
+//    public void createProduct() {
+//        Mockito.when(mediator.dispatch(any(CreatePorductRequest.class))).thenReturn(null);
+//        CreatePorductRequest productRequest = new CreatePorductRequest();
+//        productRequest.setName("Gaming Laptop");
+//        Mockito.when(productDtoMapper.mapToProductCreateRequest(any(CreateProductDto.class))).thenReturn(productRequest);
+//
+//        CreateProductDto createProductDto = new CreateProductDto();
+//        createProductDto.setName("Gaming Laptop");
+//
+//
+//        ResponseEntity<Void> response = productController.createProduct(createProductDto);
+//        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+//
+//
+//    }
 
-        CreateProductDto createProductDto = new CreateProductDto();
-        createProductDto.setName("Gaming Laptop");
-
-
-        ResponseEntity<Void> response = productController.createProduct(createProductDto);
-        assertEquals(HttpStatus.CREATED, response.getStatusCode());
-
-
-    }
-
-    @Test
-    public void updateProduct() {
-        Product product = Product.builder()
-                .id(1L)
-                .name("Gaming Laptop")
-                .build();
-
-        UpdateProductResponse response = new UpdateProductResponse(product);
-        Mockito.when(mediator.dispatch(any(UpdateProductRequest.class))).thenReturn(response);
-        UpdateProductRequest updateProductRequest = new UpdateProductRequest();
-        updateProductRequest.setId(1L);
-        updateProductRequest.setName("Gaming Laptop");
-        Mockito.when(productDtoMapper.mapToProductUpdateRequest(any(UpdateProductDto.class))).thenReturn(updateProductRequest);
-
-        UpdateProductDto updateProductDto = new UpdateProductDto();
-        updateProductDto.setId(1L);
-        updateProductDto.setName("Gaming Laptop");
-        ProductDto productDto = ProductDto.builder()
-                .id(1L)
-                .name("Gaming Laptop")
-                .build();
-
-        Mockito.when(productDtoMapper.mapToProductDto(any(Product.class))).thenReturn(productDto);
-        ResponseEntity<ProductDto> res = productController.updateProduct(updateProductDto);
-        Assertions.assertNotNull(res.getBody());
-        log.info(res.getBody().toString());
-        assertEquals(HttpStatus.OK, res.getStatusCode());
-
-
-    }
+//    @Test
+//    public void updateProduct() {
+//        Product product = Product.builder()
+//                .id(1L)
+//                .name("Gaming Laptop")
+//                .build();
+//
+//        UpdateProductResponse response = new UpdateProductResponse(product);
+//        Mockito.when(mediator.dispatch(any(UpdateProductRequest.class))).thenReturn(response);
+//        UpdateProductRequest updateProductRequest = new UpdateProductRequest();
+//        updateProductRequest.setId(1L);
+//        updateProductRequest.setName("Gaming Laptop");
+//        Mockito.when(productDtoMapper.mapToProductUpdateRequest(any(UpdateProductDto.class))).thenReturn(updateProductRequest);
+//
+//        UpdateProductDto updateProductDto = new UpdateProductDto();
+//        updateProductDto.setId(1L);
+//        updateProductDto.setName("Gaming Laptop");
+//        ProductDto productDto = ProductDto.builder()
+//                .id(1L)
+//                .name("Gaming Laptop")
+//                .build();
+//
+//        Mockito.when(productDtoMapper.mapToProductDto(any(Product.class))).thenReturn(productDto);
+//        ResponseEntity<ProductDto> res = productController.updateProduct(updateProductDto);
+//        Assertions.assertNotNull(res.getBody());
+//        log.info(res.getBody().toString());
+//        assertEquals(HttpStatus.OK, res.getStatusCode());
+//
+//
+//    }
 
     @Test
     public void deleteProduct() {

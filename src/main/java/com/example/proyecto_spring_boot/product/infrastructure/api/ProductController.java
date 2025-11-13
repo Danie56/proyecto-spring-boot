@@ -2,6 +2,7 @@ package com.example.proyecto_spring_boot.product.infrastructure.api;
 
 import com.example.proyecto_spring_boot.common.mediator.Mediator;
 import com.example.proyecto_spring_boot.product.aplication.create.CreatePorductRequest;
+import com.example.proyecto_spring_boot.product.aplication.create.CreateProductResponse;
 import com.example.proyecto_spring_boot.product.aplication.delete.DeleteProductRequest;
 import com.example.proyecto_spring_boot.product.aplication.get.getAll.GetAllProductRequest;
 import com.example.proyecto_spring_boot.product.aplication.get.getAll.GetAllProductResponse;
@@ -42,10 +43,10 @@ public class ProductController implements ProductApi {
     }
 
     @PostMapping("")
-    public ResponseEntity<Void> createProduct(@RequestBody @Valid CreateProductDto productDto) {
+    public ResponseEntity<ProductDto> createProduct(@RequestBody @Valid CreateProductDto productDto) {
         CreatePorductRequest createProductRequest = productDtoMapper.mapToProductCreateRequest(productDto);
-        mediator.dispatch(createProductRequest);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        CreateProductResponse response= mediator.dispatch(createProductRequest);
+        return  ResponseEntity.ok(productDtoMapper.mapToProductDto(response.getProduct()));
     }
 
     @GetMapping("/{id}")

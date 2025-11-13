@@ -3,6 +3,7 @@ package com.example.proyecto_spring_boot.product.aplication.create;
 import com.example.proyecto_spring_boot.common.mediator.HandlerManage;
 import com.example.proyecto_spring_boot.product.domain.entity.Product;
 import com.example.proyecto_spring_boot.product.domain.port.ProductRepository;
+import com.example.proyecto_spring_boot.product.infrastructure.repository.QueryProductRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -10,22 +11,19 @@ import org.springframework.stereotype.Component;
 @Component
 @AllArgsConstructor
 @Slf4j
-public class CreateProductHandler implements HandlerManage<CreatePorductRequest, Void> {
+public class CreateProductHandler implements HandlerManage<CreatePorductRequest, CreateProductResponse> {
     private final ProductRepository productRepository;
 
-
     @Override
-    public Void handle(CreatePorductRequest request) {
-        Long id = (long) productRepository.getAll().size() + 1;
+    public CreateProductResponse handle(CreatePorductRequest request) {
         Product product = Product.builder()
-                .id(id)
                 .name(request.getName())
                 .description(request.getDescription())
                 .price(request.getPrice())
                 .image(request.getImage())
                 .build();
-        productRepository.upsert(product);
-        return null;
+        Product save= productRepository.upsert(product);
+        return new CreateProductResponse(save);
     }
 
     @Override
