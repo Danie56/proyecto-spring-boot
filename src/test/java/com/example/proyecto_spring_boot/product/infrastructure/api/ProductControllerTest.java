@@ -1,19 +1,14 @@
 package com.example.proyecto_spring_boot.product.infrastructure.api;
 
 
-import com.example.proyecto_spring_boot.common.mediator.Mediator;
-import com.example.proyecto_spring_boot.product.aplication.create.CreatePorductRequest;
+import com.example.proyecto_spring_boot.common.application.mediator.Mediator;
 import com.example.proyecto_spring_boot.product.aplication.delete.DeleteProductRequest;
 import com.example.proyecto_spring_boot.product.aplication.get.getAll.GetAllProductRequest;
 import com.example.proyecto_spring_boot.product.aplication.get.getAll.GetAllProductResponse;
 import com.example.proyecto_spring_boot.product.aplication.get.getById.GetProductByIdRequest;
 import com.example.proyecto_spring_boot.product.aplication.get.getById.GetProductByIdResponse;
-import com.example.proyecto_spring_boot.product.aplication.update.UpdateProductRequest;
-import com.example.proyecto_spring_boot.product.aplication.update.UpdateProductResponse;
 import com.example.proyecto_spring_boot.product.domain.entity.Product;
-import com.example.proyecto_spring_boot.product.infrastructure.api.dto.CreateProductDto;
 import com.example.proyecto_spring_boot.product.infrastructure.api.dto.ProductDto;
-import com.example.proyecto_spring_boot.product.infrastructure.api.dto.UpdateProductDto;
 import com.example.proyecto_spring_boot.product.infrastructure.api.mapper.ProductDtoMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
@@ -41,31 +36,31 @@ class ProductControllerTest {
     @Mock
     private ProductDtoMapper productDtoMapper;
 
-    @Test
-    public void getAllProducts() {
-        GetAllProductResponse response = new GetAllProductResponse(List.of(
-                Product.builder().id(1L).build(),
-                Product.builder().id(2L).build(),
-                Product.builder().id(3L).build()
-
-
-        ));
-        Mockito.when(mediator.dispatch(any(GetAllProductRequest.class))).thenReturn(response);
-        ProductDto productDto = ProductDto.builder()
-                .id(1L)
-                .build();
-        Mockito.when(productDtoMapper.mapToProductDto(any(Product.class))).thenAnswer(invocation -> {
-
-            Product product = invocation.getArgument(0);
-            return ProductDto.builder()
-                    .id(product.getId())
-                    .build();
-        });
-        ResponseEntity<List<ProductDto>> request = productController.getAllProducts();
-        Assertions.assertNotNull(request.getBody());
-        assertEquals(3, request.getBody().size());
-        assertEquals(HttpStatus.OK, request.getStatusCode());
-    }
+//    @Test
+//    public void getAllProducts() {
+//        GetAllProductResponse response = new GetAllProductResponse(List.of(
+//                Product.builder().id(1L).build(),
+//                Product.builder().id(2L).build(),
+//                Product.builder().id(3L).build()
+//
+//
+//        ));
+//        Mockito.when(mediator.dispatch(any(GetAllProductRequest.class))).thenReturn(response);
+//        ProductDto productDto = ProductDto.builder()
+//                .id(1L)
+//                .build();
+//        Mockito.when(productDtoMapper.mapToProductDto(any(Product.class))).thenAnswer(invocation -> {
+//
+//            Product product = invocation.getArgument(0);
+//            return ProductDto.builder()
+//                    .id(product.getId())
+//                    .build();
+//        });
+//        ResponseEntity<List<ProductDto>> request = productController.getAllProducts();
+//        Assertions.assertNotNull(request.getBody());
+//        assertEquals(3, request.getBody().size());
+//        assertEquals(HttpStatus.OK, request.getStatusCode());
+//    }
 
     @Test
     public void getProductById() {

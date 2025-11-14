@@ -1,5 +1,6 @@
 package com.example.proyecto_spring_boot.product.aplication.get.getAll;
 
+import com.example.proyecto_spring_boot.common.domain.PaginationResult;
 import com.example.proyecto_spring_boot.product.domain.entity.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,5 +12,5 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 public class GetAllProductResponse {
-    private List<Product> products;
+    private PaginationResult<Product> products;
 }

@@ -1,5 +1,7 @@
 package com.example.proyecto_spring_boot.product.infrastructure.api;
 
+import com.example.proyecto_spring_boot.common.domain.PaginationQuery;
+import com.example.proyecto_spring_boot.common.domain.PaginationResult;
 import com.example.proyecto_spring_boot.product.infrastructure.api.dto.CreateProductDto;
 import com.example.proyecto_spring_boot.product.infrastructure.api.dto.ProductDto;
 import com.example.proyecto_spring_boot.product.infrastructure.api.dto.UpdateProductDto;
@@ -11,7 +13,7 @@ import java.util.List;
 
 public interface ProductApi {
 
-    ResponseEntity<List<ProductDto>> getAllProducts();
+    ResponseEntity<PaginationResult<ProductDto>> getAllProducts(@RequestBody PaginationQuery query);
 
     ResponseEntity<ProductDto> getProductById(@PathVariable Long id);
 

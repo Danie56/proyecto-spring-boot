@@ -1,6 +1,7 @@
 package com.example.proyecto_spring_boot.product.aplication.get.getAll;
 
-import com.example.proyecto_spring_boot.common.mediator.HandlerManage;
+import com.example.proyecto_spring_boot.common.application.mediator.HandlerManage;
+import com.example.proyecto_spring_boot.common.domain.PaginationResult;
 import com.example.proyecto_spring_boot.product.domain.entity.Product;
 import com.example.proyecto_spring_boot.product.domain.port.ProductRepository;
 import lombok.AllArgsConstructor;
@@ -15,7 +16,7 @@ public class GetAllProductHandler implements HandlerManage<GetAllProductRequest,
 
     @Override
     public GetAllProductResponse handle(GetAllProductRequest request) {
-        List<Product> products = productRepository.getAll();
+        PaginationResult<Product> products = productRepository.getAll(request.getQuery());
 
 
         return new GetAllProductResponse(products);

@@ -1,7 +1,6 @@
 package com.example.proyecto_spring_boot.product.aplication.update;
 
-import com.example.proyecto_spring_boot.common.mediator.HandlerManage;
-import com.example.proyecto_spring_boot.product.aplication.create.CreateProductResponse;
+import com.example.proyecto_spring_boot.common.application.mediator.HandlerManage;
 import com.example.proyecto_spring_boot.product.domain.entity.Product;
 import com.example.proyecto_spring_boot.product.domain.port.ProductRepository;
 import lombok.AllArgsConstructor;
