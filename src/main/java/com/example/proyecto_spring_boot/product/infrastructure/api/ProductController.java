@@ -37,7 +37,9 @@ public class ProductController implements ProductApi {
     public ResponseEntity<PaginationResult<ProductDto>> getAllProducts(@RequestBody  PaginationQuery query) {
         GetAllProductResponse response = mediator.dispatch(new GetAllProductRequest(query));
 
-        return ResponseEntity.ok(new PaginationResult<ProductDto>(response.getProducts().getContent().stream().map(productDtoMapper::mapToProductDto).toList(),response.getProducts().getTotalElements(),response.getProducts().getTotalPages()));
+        return ResponseEntity.ok(new PaginationResult<ProductDto>(response.getProducts().getContent().stream().map(productDtoMapper::mapToProductDto).toList(),
+                response.getProducts().getTotalElements(),
+                response.getProducts().getTotalPages(),response.getProducts().getPageNumber()));
 
 
     }
