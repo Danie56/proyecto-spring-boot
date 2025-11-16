@@ -10,6 +10,7 @@ import com.example.proyecto_spring_boot.product.infrastructure.repository.QueryP
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ public class ProductRepositoryImpl implements ProductRepository {
     @Override
     public PaginationResult<Product> getAll(PaginationQuery query) {
 
-        PageRequest pageRequest =  PageRequest.of(query.getPageNumber(), query.getPageSize());
+        PageRequest pageRequest =  PageRequest.of(query.getPageNumber(), query.getPageSize(), Sort.Direction.fromString(query.getDirection()), query.getProperties());
         Page<ProductEntity> pages = repository.findAll(pageRequest);
         return new PaginationResult<Product>(pages.getContent().stream().map(productEntityMapper::mapToProduct).toList(),
                 pages.getSize(),
