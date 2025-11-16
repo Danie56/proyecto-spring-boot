@@ -40,7 +40,11 @@ public class ProductRepositoryImpl implements ProductRepository {
 
         PageRequest pageRequest =  PageRequest.of(query.getPageNumber(), query.getPageSize());
         Page<ProductEntity> pages = repository.findAll(pageRequest);
-        return new PaginationResult<Product>(pages.getContent().stream().map(productEntityMapper::mapToProduct).toList(), pages.getSize(),pages.getTotalPages());
+        return new PaginationResult<Product>(pages.getContent().stream().map(productEntityMapper::mapToProduct).toList(),
+                pages.getSize(),
+                pages.getTotalPages(),
+                pages.getNumber()
+            );
     }
 
     @Override
