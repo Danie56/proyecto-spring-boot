@@ -1,11 +1,18 @@
 package com.example.proyecto_spring_boot.product.infrastructure.database;
 
+import com.example.proyecto_spring_boot.common.domain.PaginationQuery;
+import com.example.proyecto_spring_boot.common.domain.PaginationResult;
 import com.example.proyecto_spring_boot.product.domain.entity.Product;
 import com.example.proyecto_spring_boot.product.domain.port.ProductRepository;
 import com.example.proyecto_spring_boot.product.infrastructure.database.entity.ProductEntity;
 import com.example.proyecto_spring_boot.product.infrastructure.database.mapper.ProductEntityMapper;
+import com.example.proyecto_spring_boot.product.infrastructure.repository.ProductSpecification;
 import com.example.proyecto_spring_boot.product.infrastructure.repository.QueryProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -26,14 +33,22 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     }
 
+
     @Override
     public Optional<Product> getById(Long id) {
         return repository.findById(id).map(productEntityMapper::mapToProduct);
     }
-
     @Override
-    public List<Product> getAll() {
-        return repository.findAll().stream().map(productEntityMapper::mapToProduct).toList();
+    public PaginationResult<Product> getAll(PaginationQuery query) {
+
+        PageRequest pageRequest =  PageRequest.of(query.getPageNumber(), query.getPageSize(), Sort.Direction.fromString(query.getDirection()), query.getProperties());
+        Specification<ProductEntity> specification = Specification.allOf(ProductSpecification.byName(query.getByName()).and(ProductSpecification.priceBetween(query.getPriceMin(), query.getPriceMax())));
+        Page<ProductEntity> pages = repository.findAll(specification,pageRequest);
+        return new PaginationResult<Product>(pages.getContent().stream().map(productEntityMapper::mapToProduct).toList(),
+                pages.getSize(),
+                pages.getTotalPages(),
+                pages.getNumber()
+            );
     }
 
     @Override

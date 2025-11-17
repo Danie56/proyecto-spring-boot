@@ -15,32 +15,30 @@ import java.util.concurrent.atomic.AtomicLong;
 @RequiredArgsConstructor
 @Slf4j
 public class FixProductIdSchedule {
-    private final ProductRepository productRepository;
-    private int previousSize = 0;
 
 
-    @Scheduled(fixedRate = 5000)
-    public void fixProductId() {
-        log.info("fixing product id");
-        List<Product> products = productRepository.getAll();
-        if (products.size() == previousSize) {
-            log.info("The IDs are already organized.");
-            return;
-
-        }
-
-
-        AtomicLong counter = new AtomicLong(1);
-        products.stream()
-                .sorted(Comparator.comparing(Product::getId))
-                .forEach(p -> p.setId(counter.getAndIncrement()));
-
-        products.forEach(productRepository::upsert);
-
-        previousSize = products.size();
-
-        log.info("finish fixing product id");
-
-
-    }
+//    @Scheduled(fixedRate = 5000)
+//    public void fixProductId() {
+//        log.info("fixing product id");
+//        List<Product> products = productRepository.getAll();
+//        if (products.size() == previousSize) {
+//            log.info("The IDs are already organized.");
+//            return;
+//
+//        }
+//
+//
+//        AtomicLong counter = new AtomicLong(1);
+//        products.stream()
+//                .sorted(Comparator.comparing(Product::getId))
+//                .forEach(p -> p.setId(counter.getAndIncrement()));
+//
+//        products.forEach(productRepository::upsert);
+//
+//        previousSize = products.size();
+//
+//        log.info("finish fixing product id");
+//
+//
+//    }
 }

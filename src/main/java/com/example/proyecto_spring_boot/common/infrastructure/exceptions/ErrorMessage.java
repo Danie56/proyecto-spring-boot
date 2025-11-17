@@ -1,4 +1,4 @@
-package com.example.proyecto_spring_boot.common.exceptions;
+package com.example.proyecto_spring_boot.common.infrastructure.exceptions;
 
 import lombok.Data;
 

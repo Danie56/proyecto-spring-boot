@@ -1,4 +1,4 @@
-package com.example.proyecto_spring_boot.common.mediator;
+package com.example.proyecto_spring_boot.common.application.mediator;
 
 import org.springframework.stereotype.Component;
 

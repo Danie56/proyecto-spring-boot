@@ -1,4 +1,4 @@
-package com.example.proyecto_spring_boot.common.exceptions;
+package com.example.proyecto_spring_boot.common.infrastructure.exceptions;
 
 import com.example.proyecto_spring_boot.product.domain.execptions.ProductNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;

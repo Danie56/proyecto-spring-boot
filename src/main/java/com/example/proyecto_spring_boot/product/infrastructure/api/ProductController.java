@@ -1,6 +1,8 @@
 package com.example.proyecto_spring_boot.product.infrastructure.api;
 
-import com.example.proyecto_spring_boot.common.mediator.Mediator;
+import com.example.proyecto_spring_boot.common.application.mediator.Mediator;
+import com.example.proyecto_spring_boot.common.domain.PaginationQuery;
+import com.example.proyecto_spring_boot.common.domain.PaginationResult;
 import com.example.proyecto_spring_boot.product.aplication.create.CreatePorductRequest;
 import com.example.proyecto_spring_boot.product.aplication.create.CreateProductResponse;
 import com.example.proyecto_spring_boot.product.aplication.delete.DeleteProductRequest;
@@ -16,7 +18,6 @@ import com.example.proyecto_spring_boot.product.infrastructure.api.dto.UpdatePro
 import com.example.proyecto_spring_boot.product.infrastructure.api.mapper.ProductDtoMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,11 +34,10 @@ public class ProductController implements ProductApi {
 
 
     @GetMapping("")
-    public ResponseEntity<List<ProductDto>> getAllProducts() {
-        GetAllProductResponse response = mediator.dispatch(new GetAllProductRequest());
-        List<ProductDto> products = response.getProducts().stream().map(productDtoMapper::mapToProductDto).toList();
+    public ResponseEntity<PaginationResult<ProductDto>> getAllProducts(@RequestBody  PaginationQuery query) {
+        GetAllProductResponse response = mediator.dispatch(new GetAllProductRequest(query));
 
-        return ResponseEntity.ok(products);
+        return ResponseEntity.ok(new PaginationResult<ProductDto>(response.getProducts().getContent().stream().map(productDtoMapper::mapToProductDto).toList(),response.getProducts().getTotalElements(),response.getProducts().getTotalPages(),response.getProducts().getPageNumber()));
 
 
     }

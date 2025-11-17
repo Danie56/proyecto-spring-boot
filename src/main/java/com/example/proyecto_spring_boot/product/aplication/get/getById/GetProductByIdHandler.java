@@ -1,6 +1,6 @@
 package com.example.proyecto_spring_boot.product.aplication.get.getById;
 
-import com.example.proyecto_spring_boot.common.mediator.HandlerManage;
+import com.example.proyecto_spring_boot.common.application.mediator.HandlerManage;
 import com.example.proyecto_spring_boot.product.domain.entity.Product;
 import com.example.proyecto_spring_boot.product.domain.execptions.ProductNotFoundException;
 import com.example.proyecto_spring_boot.product.domain.port.ProductRepository;
