@@ -12,4 +12,8 @@ public class PaginationQuery {
     private int pageSize;
     private String direction;
     private String properties;
+    private String byName;
+    private Double priceMin;
+    private Double priceMax;
+
 }
