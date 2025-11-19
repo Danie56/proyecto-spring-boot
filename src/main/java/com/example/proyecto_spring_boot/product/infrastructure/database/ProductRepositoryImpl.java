@@ -3,6 +3,7 @@ package com.example.proyecto_spring_boot.product.infrastructure.database;
 import com.example.proyecto_spring_boot.common.domain.PaginationQuery;
 import com.example.proyecto_spring_boot.common.domain.PaginationResult;
 import com.example.proyecto_spring_boot.product.domain.entity.Product;
+import com.example.proyecto_spring_boot.product.domain.execptions.ProductNotFoundException;
 import com.example.proyecto_spring_boot.product.domain.port.ProductRepository;
 import com.example.proyecto_spring_boot.product.infrastructure.database.entity.ProductEntity;
 import com.example.proyecto_spring_boot.product.infrastructure.database.mapper.ProductEntityMapper;
@@ -34,9 +35,10 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
 
+
     @Override
-    public Optional<Product> getById(Long id) {
-        return repository.findById(id).map(productEntityMapper::mapToProduct);
+    public Product getById(Long id) {
+        return repository.findById(id).map(productEntityMapper::mapToProduct).orElseThrow(() -> new ProductNotFoundException(id));
     }
     @Override
     public PaginationResult<Product> getAll(PaginationQuery query) {

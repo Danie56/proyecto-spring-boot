@@ -14,7 +14,7 @@ public class DeleteProductHandler implements HandlerManage<DeleteProductRequest,
 
     @Override
     public Void handle(DeleteProductRequest request) {
-        Product product = productRepository.getById(request.getId()).orElseThrow(() -> new ProductNotFoundException(request.getId()));
+        Product product = productRepository.getById(request.getId());
         productRepository.delete(request.getId());
         return null;
 
