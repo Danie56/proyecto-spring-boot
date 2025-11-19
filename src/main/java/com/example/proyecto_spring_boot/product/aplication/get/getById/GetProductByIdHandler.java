@@ -15,7 +15,7 @@ public class GetProductByIdHandler implements HandlerManage<GetProductByIdReques
     @Override
     public GetProductByIdResponse handle(GetProductByIdRequest request) {
 
-        Product product = productRepository.getById(request.getId()).orElseThrow(() -> new ProductNotFoundException(request.getId()));
+        Product product = productRepository.getById(request.getId());
 
         return new GetProductByIdResponse(product);
     }

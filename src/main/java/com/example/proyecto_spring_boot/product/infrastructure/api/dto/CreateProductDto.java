@@ -22,5 +22,7 @@ public class CreateProductDto {
     @NotBlank(message = "Image URL is required")
     private String image;
 
+    private ProductDetailDto productDetail;
+
 
 }

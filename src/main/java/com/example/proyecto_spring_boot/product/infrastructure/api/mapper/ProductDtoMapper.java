@@ -7,6 +7,7 @@ import com.example.proyecto_spring_boot.product.infrastructure.api.dto.CreatePro
 import com.example.proyecto_spring_boot.product.infrastructure.api.dto.ProductDto;
 import com.example.proyecto_spring_boot.product.infrastructure.api.dto.UpdateProductDto;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;
 
@@ -17,7 +18,7 @@ public interface ProductDtoMapper {
 
     UpdateProductRequest mapToProductUpdateRequest(UpdateProductDto productDto);
 
-
+    @Mapping(target = "provider", source = "productDetail.provider")
     ProductDto mapToProductDto(Product product);
 
 

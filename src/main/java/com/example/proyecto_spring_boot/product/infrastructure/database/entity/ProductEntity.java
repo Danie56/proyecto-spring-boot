@@ -1,5 +1,6 @@
 package com.example.proyecto_spring_boot.product.infrastructure.database.entity;
 
+import com.example.proyecto_spring_boot.ProductDetails.infrastructura.ProductDetailEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -15,4 +16,7 @@ public class ProductEntity {
     private String description;
     private Double price;
     private String image;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_details_id")
+    private ProductDetailEntity productDetail;
 }

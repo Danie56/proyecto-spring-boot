@@ -1,5 +1,6 @@
 package com.example.proyecto_spring_boot.product.aplication.update;
 
+import com.example.proyecto_spring_boot.ProductDetails.aplication.ProductDetailRequest;
 import com.example.proyecto_spring_boot.common.application.mediator.Request;
 import lombok.*;
 
@@ -14,4 +15,5 @@ public class UpdateProductRequest implements Request<UpdateProductResponse> {
     private String description;
     private Double price;
     private String image;
+    private ProductDetailRequest productDetail;
 }

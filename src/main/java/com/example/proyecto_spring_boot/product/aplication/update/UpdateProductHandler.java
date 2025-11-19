@@ -1,5 +1,6 @@
 package com.example.proyecto_spring_boot.product.aplication.update;
 
+import com.example.proyecto_spring_boot.ProductDetails.domain.ProductDetail;
 import com.example.proyecto_spring_boot.common.application.mediator.HandlerManage;
 import com.example.proyecto_spring_boot.product.domain.entity.Product;
 import com.example.proyecto_spring_boot.product.domain.port.ProductRepository;
@@ -13,6 +14,13 @@ public class UpdateProductHandler implements HandlerManage<UpdateProductRequest,
 
     @Override
     public UpdateProductResponse handle(UpdateProductRequest request) {
+        Product productFound = productRepository.getById(request.getId());
+        ProductDetail productDetail = ProductDetail.builder()
+                .id(productFound.getProductDetail().getId())
+                .specifications(request.getProductDetail().getSpecifications())
+                .warranty(request.getProductDetail().getWarranty())
+                .provider(request.getProductDetail().getProvider())
+                .build();
 
         Product product =Product.builder()
                 .id(request.getId())
@@ -20,6 +28,7 @@ public class UpdateProductHandler implements HandlerManage<UpdateProductRequest,
                 .description(request.getDescription())
                 .price(request.getPrice())
                 .image(request.getImage())
+                .productDetail(productDetail)
                 .build();
         Product save =productRepository.upsert(product);
 
