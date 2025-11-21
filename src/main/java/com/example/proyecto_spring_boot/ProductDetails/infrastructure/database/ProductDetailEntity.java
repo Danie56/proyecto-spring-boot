@@ -1,4 +1,4 @@
-package com.example.proyecto_spring_boot.ProductDetails.infrastructura;
+package com.example.proyecto_spring_boot.ProductDetails.infrastructure.database;
 
 import com.example.proyecto_spring_boot.product.infrastructure.database.entity.ProductEntity;
 import jakarta.persistence.*;

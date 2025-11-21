@@ -1,5 +1,6 @@
 package com.example.proyecto_spring_boot.product.infrastructure.api.dto;
 
+import com.example.proyecto_spring_boot.ProductDetails.infrastructure.api.ProductDetailDto;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 

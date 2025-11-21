@@ -10,6 +10,7 @@ import com.example.proyecto_spring_boot.product.infrastructure.database.mapper.P
 import com.example.proyecto_spring_boot.product.infrastructure.repository.ProductSpecification;
 import com.example.proyecto_spring_boot.product.infrastructure.repository.QueryProductRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -22,6 +23,7 @@ import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
+@Slf4j
 public class ProductRepositoryImpl implements ProductRepository {
     private final ProductEntityMapper productEntityMapper;
     private final QueryProductRepository repository;
