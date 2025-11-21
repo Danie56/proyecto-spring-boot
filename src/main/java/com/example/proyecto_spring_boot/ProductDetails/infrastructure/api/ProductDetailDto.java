@@ -1,4 +1,4 @@
-package com.example.proyecto_spring_boot.product.infrastructure.api.dto;
+package com.example.proyecto_spring_boot.ProductDetails.infrastructure.api;
 
 import lombok.Data;
 

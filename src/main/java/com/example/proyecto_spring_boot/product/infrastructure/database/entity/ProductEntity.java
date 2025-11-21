@@ -1,8 +1,12 @@
 package com.example.proyecto_spring_boot.product.infrastructure.database.entity;
 
-import com.example.proyecto_spring_boot.ProductDetails.infrastructura.ProductDetailEntity;
+import com.example.proyecto_spring_boot.ProductDetails.infrastructure.database.ProductDetailEntity;
+import com.example.proyecto_spring_boot.review.infrastructure.database.entity.ReviewEntity;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -19,4 +23,6 @@ public class ProductEntity {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "product_details_id")
     private ProductDetailEntity productDetail;
+    @OneToMany(mappedBy = "product")
+    private List<ReviewEntity> reviews = new ArrayList<>();
 }

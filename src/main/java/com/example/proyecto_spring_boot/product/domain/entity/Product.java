@@ -1,8 +1,12 @@
 package com.example.proyecto_spring_boot.product.domain.entity;
 
 import com.example.proyecto_spring_boot.ProductDetails.domain.ProductDetail;
+import com.example.proyecto_spring_boot.review.domain.Review;
 import lombok.Builder;
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Builder
@@ -15,5 +19,7 @@ public class Product {
     private Double price;
     private String image;
     private ProductDetail productDetail;
+    private List<Review> reviews = new ArrayList<>();
+
 
 }
