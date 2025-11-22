@@ -4,6 +4,8 @@ import com.example.proyecto_spring_boot.ProductDetails.aplication.ProductDetailR
 import com.example.proyecto_spring_boot.common.application.mediator.Request;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,4 +18,6 @@ public class UpdateProductRequest implements Request<UpdateProductResponse> {
     private Double price;
     private String image;
     private ProductDetailRequest productDetail;
+    private List<Long> categories;
+
 }

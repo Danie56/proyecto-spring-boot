@@ -1,4 +1,4 @@
-package com.example.proyecto_spring_boot.product.infrastructure.repository;
+package com.example.proyecto_spring_boot.product.infrastructure.database.repository;
 
 import com.example.proyecto_spring_boot.product.infrastructure.database.entity.ProductEntity;
 import org.springframework.data.jpa.domain.Specification;

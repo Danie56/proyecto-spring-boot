@@ -4,6 +4,8 @@ import com.example.proyecto_spring_boot.ProductDetails.infrastructure.api.Produc
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class UpdateProductDto {
     @NotNull(message = "ID is required")
@@ -24,6 +26,8 @@ public class UpdateProductDto {
     @NotBlank(message = "Image URL is required")
     private String image;
     private ProductDetailDto productDetail;
+    private List<Long> categories;
+
 
 
 }

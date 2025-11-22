@@ -15,7 +15,7 @@ import org.mapstruct.ReportingPolicy;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING, unmappedTargetPolicy = ReportingPolicy.ERROR)
 
-public interface ProductDtoMapper extends ReviewDtoMapper {
+public interface ProductDtoMapper {
     CreatePorductRequest mapToProductCreateRequest(CreateProductDto productDto);
 
     UpdateProductRequest mapToProductUpdateRequest(UpdateProductDto productDto);

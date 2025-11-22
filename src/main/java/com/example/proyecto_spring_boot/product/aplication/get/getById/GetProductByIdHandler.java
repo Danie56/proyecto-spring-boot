@@ -16,7 +16,7 @@ public class GetProductByIdHandler implements HandlerManage<GetProductByIdReques
     public GetProductByIdResponse handle(GetProductByIdRequest request) {
 
         Product product = productRepository.getById(request.getId());
-        System.out.println(product.getReviews().size());
+        System.out.println(product.getCategories().size());
         return new GetProductByIdResponse(product);
     }
 

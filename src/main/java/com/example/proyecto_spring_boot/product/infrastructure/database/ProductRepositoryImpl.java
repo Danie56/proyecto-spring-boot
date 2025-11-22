@@ -7,8 +7,8 @@ import com.example.proyecto_spring_boot.product.domain.execptions.ProductNotFoun
 import com.example.proyecto_spring_boot.product.domain.port.ProductRepository;
 import com.example.proyecto_spring_boot.product.infrastructure.database.entity.ProductEntity;
 import com.example.proyecto_spring_boot.product.infrastructure.database.mapper.ProductEntityMapper;
-import com.example.proyecto_spring_boot.product.infrastructure.repository.ProductSpecification;
-import com.example.proyecto_spring_boot.product.infrastructure.repository.QueryProductRepository;
+import com.example.proyecto_spring_boot.product.infrastructure.database.repository.ProductSpecification;
+import com.example.proyecto_spring_boot.product.infrastructure.database.repository.QueryProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -16,10 +16,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Repository;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
