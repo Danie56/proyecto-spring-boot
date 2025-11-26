@@ -53,9 +53,7 @@ public class ProductController implements ProductApi {
     public ResponseEntity<ProductDto> getProductById(Long id) {
 
         GetProductByIdResponse response = mediator.dispatch(new GetProductByIdRequest(id));
-        response.getProduct().getCategories().forEach(category -> {
-            System.out.println(category.getName());
-        });
+
         ProductDto productDto = productDtoMapper.mapToProductDto(response.getProduct());
 
         return ResponseEntity.ok(productDto);
