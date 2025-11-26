@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,4 +17,5 @@ public class CreatePorductRequest implements Request<CreateProductResponse> {
     private Double price;
     private String image;
     private ProductDetailRequest productDetail;
+    private List<Long> categories;
 }

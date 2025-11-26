@@ -1,5 +1,6 @@
 package com.example.proyecto_spring_boot.product.infrastructure.api.dto;
 
+import com.example.proyecto_spring_boot.categories.infrastructure.api.CategoryDto;
 import com.example.proyecto_spring_boot.review.infrastructure.api.dto.ReviewDto;
 import lombok.Builder;
 import lombok.Data;
@@ -16,5 +17,6 @@ public class ProductDto {
     private String image;
     private String provider;
     private List<ReviewDto> reviews;
+    private List<CategoryDto> categories;
 
 }
