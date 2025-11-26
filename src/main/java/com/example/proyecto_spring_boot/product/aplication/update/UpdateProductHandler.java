@@ -6,12 +6,14 @@ import com.example.proyecto_spring_boot.categories.domain.port.CategoryRepositor
 import com.example.proyecto_spring_boot.common.application.mediator.HandlerManage;
 import com.example.proyecto_spring_boot.product.domain.entity.Product;
 import com.example.proyecto_spring_boot.product.domain.port.ProductRepository;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
+@Transactional
 @AllArgsConstructor
 public class UpdateProductHandler implements HandlerManage<UpdateProductRequest, UpdateProductResponse> {
     private final ProductRepository productRepository;

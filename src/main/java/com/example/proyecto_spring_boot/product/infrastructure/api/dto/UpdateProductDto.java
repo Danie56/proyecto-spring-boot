@@ -2,11 +2,13 @@ package com.example.proyecto_spring_boot.product.infrastructure.api.dto;
 
 import com.example.proyecto_spring_boot.ProductDetails.infrastructure.api.ProductDetailDto;
 import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
+@AllArgsConstructor
 public class UpdateProductDto {
     @NotNull(message = "ID is required")
     private Long id;

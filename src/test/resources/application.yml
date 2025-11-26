@@ -1,5 +1,5 @@
 spring:
   application:
     name: proyecto-spring-boot
-profiles:
-  active: test
+  profiles:
+    active: test
