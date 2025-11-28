@@ -3,11 +3,13 @@ package com.example.proyecto_spring_boot.common.domain;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Array;
 
 @Data
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class PaginationQuery {
 
     private int pageNumber;

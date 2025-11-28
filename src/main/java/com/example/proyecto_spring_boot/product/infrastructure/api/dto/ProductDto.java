@@ -4,6 +4,7 @@ import com.example.proyecto_spring_boot.categories.infrastructure.api.CategoryDt
 import com.example.proyecto_spring_boot.review.infrastructure.api.dto.ReviewDto;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
