@@ -1,7 +1,8 @@
 package com.example.proyecto_spring_boot.IT;
 
 import com.example.proyecto_spring_boot.ProductDetails.infrastructure.api.ProductDetailDto;
-import com.example.proyecto_spring_boot.product.domain.execptions.ProductNotFoundException;
+import com.example.proyecto_spring_boot.common.domain.PaginationQuery;
+import com.example.proyecto_spring_boot.common.domain.PaginationResult;
 import com.example.proyecto_spring_boot.product.infrastructure.api.dto.CreateProductDto;
 import com.example.proyecto_spring_boot.product.infrastructure.api.dto.ProductDto;
 import com.example.proyecto_spring_boot.product.infrastructure.api.dto.UpdateProductDto;
@@ -12,10 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
 
@@ -42,14 +43,41 @@ public class ProductIT {
 
     }
     @Test
+    @Sql(value = "/IT/product/data.sql",executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = "/IT/clear.sql",executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    public void shouldReturnPaginatedProducts(){
+        PaginationQuery query = PaginationQuery.builder()
+                .pageNumber(0)
+                .pageSize(2)
+                .direction("asc")
+                .properties("id")
+                .build();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<PaginationQuery> request = new HttpEntity<>(query, headers);
+        ResponseEntity<PaginationResult<ProductDto>> response =
+                restTemplate.exchange(
+                        "/api/v1/products",
+                        HttpMethod.GET,
+                        request,
+                        new ParameterizedTypeReference<PaginationResult<ProductDto>>() {}
+                );
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNotNull(response.getBody());
+        assertEquals(2, response.getBody().getContent().size());
+
+
+    }
+    @Test
     @Sql(value = "/IT/clear.sql",executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void createProduct(){
         CreateProductDto body = new CreateProductDto(
-                "Gaming Laptop",
-                "High-performance gaming laptop with RTX 4070 and 16GB RAM",
+                "new product",
+                "new description",
                 1499.99,
-                "https://example.com/images/laptop.png",
-                new ProductDetailDto("Intel i7, RTX 4070, 16GB RAM, 1TB SSD","One years","sony"),
+                "new_image.png",
+                new ProductDetailDto("news specifications","new warranty","new provider"),
                 List.of(1L, 2L, 3L)
         );
         ResponseEntity<ProductDto> request = restTemplate.postForEntity("/api/v1/products",body, ProductDto.class);

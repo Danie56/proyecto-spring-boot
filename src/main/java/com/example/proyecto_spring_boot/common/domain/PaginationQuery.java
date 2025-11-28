@@ -1,10 +1,12 @@
 package com.example.proyecto_spring_boot.common.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import org.hibernate.annotations.Array;
 
 @Data
+@Builder
 @AllArgsConstructor
 public class PaginationQuery {
 
